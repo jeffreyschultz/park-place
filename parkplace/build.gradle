@@ -1,0 +1,61 @@
+buildscript {
+    repositories {
+        maven { url 'https://repo.spring.io/plugins-snapshot' }
+    }
+
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE'
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+apply plugin: 'idea'
+
+apply plugin: 'io.spring.dependency-management'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+group 'com.forrent.parkplace'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile 'javax.servlet:jstl:1.2'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:slf4j-nop:1.7.25'
+
+    compile 'com.google.guava:guava:23.5-jre'
+    compile 'com.google.maps:google-maps-services:0.2.5'
+
+    compile 'org.springframework:spring-core'
+    compile 'org.springframework:spring-webmvc'
+    compile 'org.springframework.security:spring-security-web'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    providedCompile 'javax.servlet:javax.servlet-api:2.5.0'
+}
+
+repositories {
+    maven { url 'http://repo.spring.io/release' }
+
+    jcenter()
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework:spring-framework-bom:5.0.2.RELEASE'
+        mavenBom 'org.springframework.security:spring-security-bom:5.0.0.RELEASE'
+    }
+}
+
+gretty {
+    contextPath = '/parkplace'
+    //servletContainer = 'jetty93'
+    loggingLevel = 'DEBUG'
+}
