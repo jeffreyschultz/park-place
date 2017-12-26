@@ -10,6 +10,9 @@ import com.google.maps.model.PlacesSearchResult;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Park provider that uses Google Maps Places API to find parks near a specific location.
+ */
 public class GoogleMapsPlacesParkProvider implements ParkProvider {
 
     private GoogleMapsPlacesService googleMapsPlacesService;
@@ -22,16 +25,24 @@ public class GoogleMapsPlacesParkProvider implements ParkProvider {
         this.googleMapsPlacesService = googleMapsPlacesService;
     }
 
+    /**
+     * Find parks near the current location.
+     *
+     * @param latLng
+     * @return
+     */
     @Override
-    public List<Park> findParks(LatLng location) {
+    public List<Park> findParks(LatLng latLng) {
 
         ArrayList<Park> parks = new ArrayList<>();
         try {
-            PlacesSearchResponse response = googleMapsPlacesService.findParksNearBy(location);
+            PlacesSearchResponse response = googleMapsPlacesService.findParksNearBy(latLng);
 
             if (response != null) {
                 for (PlacesSearchResult place : response.results) {
-                    Park park = PlaceToParkAdapter.adapt(place);
+                    Park park = PlaceToParkMapper.map(latLng, place);
+
+                    parks.add(park);
                 }
             }
         } catch (Exception e) {
@@ -40,5 +51,4 @@ public class GoogleMapsPlacesParkProvider implements ParkProvider {
 
         return parks;
     }
-
 }

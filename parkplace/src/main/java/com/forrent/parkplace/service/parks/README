@@ -1,0 +1,14 @@
+The reason for providing a generalized Park data object is to provide a contract between "Park Providers" and code that
+actually handles the returned parks. There could be multiple park providers, such as Google, Kaboom, etc., and
+developing code specific to each provider doesn't make a lot of sense. Generalize it, and as long as providers adhere to
+the programming model, consumers can use parks that were discovered by any provider.
+
+---
+
+NOTE:
+
+This has a different intention than the ParkModel under the mvc/model package as that is more related to the (M)odel in
+MVC, where it is specialized to a particular presentation model or view, or even rest service that feeds a view. This
+keeps the UI from having to be coupled to internal structures that can be in flux during changes. This does add overhead
+with maintaining usages of the internal structures being changes, but that is a given in either case. This approach
+keeps internal semantics from creeping into parts of the application where it doesn't belong.

@@ -7,8 +7,8 @@ import java.util.List;
 public interface ParkProvider {
 
     /**
-     * @param location
+     * @param latLng
      * @return
      */
-    List<Park> findParks(LatLng location);
+    List<Park> findParks(LatLng latLng);
 }

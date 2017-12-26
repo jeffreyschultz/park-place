@@ -8,6 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class IndexController {
 
+    /**
+     * Default controller method to render the app page.
+     *
+     * @return
+     */
     @RequestMapping
     public ModelAndView index() {
         return new ModelAndView("index");

@@ -10,20 +10,33 @@ import com.google.maps.model.PlacesSearchResponse;
 
 import java.io.IOException;
 
-public class DefaultGoogleMapsPlacesService extends GoogleMapsClient implements GoogleMapsPlacesService {
+/**
+ * Default implementation of the Google Maps Places API service.
+ */
+public class GoogleMapsPlacesServiceImpl extends GoogleMapsClient implements GoogleMapsPlacesService {
 
-    protected DefaultGoogleMapsPlacesService(GeoApiContext geoApiContext) {
+    protected GoogleMapsPlacesServiceImpl(GeoApiContext geoApiContext) {
         super(geoApiContext);
     }
 
+    /**
+     * Returns a response containing a list of parks near the specified location using the Google Maps Places API.
+     *
+     * @param location
+     * @return
+     * @throws InterruptedException
+     * @throws ApiException
+     * @throws IOException
+     */
     @Override
     public PlacesSearchResponse findParksNearBy(LatLng location) throws InterruptedException, ApiException, IOException {
 
         GeoApiContext ctx = getGeoApiContext();
 
+        double tenMiles = Math.round(Distances.milesToMeters(10));
+
         PlacesSearchResponse response = PlacesApi.nearbySearchQuery(ctx, location)
-                .radius(Distances.MilesToMeters(10))
-                //.rankby(RankBy.DISTANCE)
+                .radius((int) Math.round(tenMiles))
                 .type(PlaceType.PARK)
                 .await();
 

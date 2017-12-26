@@ -1,0 +1,4 @@
+This fictional soap API would be the external facing service intended to be used by third-parties.
+
+This would likely have different methods and structures, and security requirements, but would still be able to reuse the
+existing code supporting the front-end to get the data.

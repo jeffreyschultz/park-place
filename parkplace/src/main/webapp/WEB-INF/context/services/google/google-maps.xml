@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="geoApiContextFactory"
+          class="com.forrent.parkplace.service.google.GeoApiContextBuilder">
+        <property name="apiKey" value="AIzaSyASwFKj6RSnZfHoBxYOsc6tHKtwGhN_xzg"/>
+    </bean>
+
+    <bean id="geoApiContext"
+          class="com.google.maps.GeoApiContext"
+          factory-bean="geoApiContextFactory"
+          factory-method="build">
+    </bean>
+
+    <import resource="google-maps-places.xml"/>
+
+    <!--
+        Geocoding API is no longer used because the lat/lng is found in the geometry.
+    -->
+    <!--<import resource="google-maps-geocode.xml" />-->
+
+</beans>

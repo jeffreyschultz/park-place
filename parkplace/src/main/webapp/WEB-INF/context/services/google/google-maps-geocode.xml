@@ -4,16 +4,9 @@
         xmlns="http://www.springframework.org/schema/beans"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="googleMapsPlacesApiClient"
-          class="com.forrent.parkplace.service.google.GoogleMapsPlacesServiceImpl">
-
+    <bean id="googleMapsGeocodeService"
+          class="com.forrent.parkplace.service.google.GoogleMapsGeocodeServiceImpl">
         <constructor-arg name="geoApiContext" ref="geoApiContext"/>
-    </bean>
-
-    <bean id="googleMapsPlacesParkProvider"
-          class="com.forrent.parkplace.service.parks.google.GoogleMapsPlacesParkProvider">
-
-        <constructor-arg name="googleMapsPlacesService" ref="googleMapsPlacesApiClient"/>
     </bean>
 
 </beans>
