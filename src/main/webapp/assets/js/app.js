@@ -1,9 +1,11 @@
-'use strict';
+(function() {
+    'use strict';
 
-var app = angular.module(
-    'parkPlace',
-    [
-        'ngMap'
-    ]
-);
-
+    angular
+        .module(
+        'parkPlace',
+        [
+            'ngMap'
+        ]
+    );
+})();
