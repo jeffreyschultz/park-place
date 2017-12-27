@@ -6,6 +6,8 @@ import com.forrent.parkplace.web.mvc.model.ParkModel;
 import com.forrent.parkplace.web.mvc.model.ParkToParkModelMapper;
 import com.google.maps.model.LatLng;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,8 @@ import java.util.List;
 @RequestMapping("/api/parks")
 public class ParksController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ParksController.class);
+
     private ParkService parkService;
 
     public void setParkService(ParkService parkService) {
@@ -41,6 +45,8 @@ public class ParksController {
     public List<ParkModel> getParks(
             @RequestParam(value = "lat", defaultValue = "37.069") Double lat,
             @RequestParam(value = "lng", defaultValue = "-76.487") Double lng) {
+
+        LOGGER.info("{lat={},lng={}}", lat, lng);
 
         List<Park> parks = parkService.findParks(new LatLng(lat, lng));
 
