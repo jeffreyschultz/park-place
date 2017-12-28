@@ -1,6 +1,7 @@
 package com.forrent.parkplace.web.mvc.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.forrent.parkplace.support.Coord;
 import com.forrent.parkplace.support.DoubleContextualSerializer;
 import com.forrent.parkplace.support.Precision;
 

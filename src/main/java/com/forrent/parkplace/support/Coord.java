@@ -1,4 +1,4 @@
-package com.forrent.parkplace.web.mvc.model;
+package com.forrent.parkplace.support;
 
 /**
  * Coordinate model used to support the presentation.

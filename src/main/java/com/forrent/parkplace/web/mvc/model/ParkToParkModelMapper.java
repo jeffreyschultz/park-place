@@ -1,6 +1,7 @@
 package com.forrent.parkplace.web.mvc.model;
 
 import com.forrent.parkplace.service.parks.Park;
+import com.forrent.parkplace.support.Coord;
 import com.forrent.parkplace.util.Distances;
 import com.google.maps.model.LatLng;
 
@@ -27,13 +28,11 @@ public class ParkToParkModelMapper {
         model.setRating(park.getRating());
 
         double d = Distances.metersToMiles(park.getDistance());
-
         model.setDistance(d);
 
         if (park.getGeometry() != null && park.getGeometry().location != null) {
             LatLng latLng = park.getGeometry().location;
 
-            //System.out.println("Setting coord = " + latLng);
             model.setCoord(new Coord(latLng.lat, latLng.lng));
         }
 

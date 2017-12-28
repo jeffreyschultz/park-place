@@ -3,6 +3,7 @@ package com.forrent.parkplace.service.parks.google;
 import com.forrent.parkplace.service.google.GoogleMapsPlacesService;
 import com.forrent.parkplace.service.parks.Park;
 import com.forrent.parkplace.service.parks.ParkProvider;
+import com.forrent.parkplace.support.Coord;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
@@ -28,14 +29,15 @@ public class GoogleMapsPlacesParkProvider implements ParkProvider {
     /**
      * Find parks near the current location.
      *
-     * @param latLng
+     * @param coord
      * @return
      */
     @Override
-    public List<Park> findParks(LatLng latLng) {
+    public List<Park> findParks(Coord coord) {
 
         ArrayList<Park> parks = new ArrayList<>();
         try {
+            LatLng latLng = new LatLng(coord.getLat(), coord.getLng());
             PlacesSearchResponse response = googleMapsPlacesService.findParksNearBy(latLng);
 
             if (response != null) {

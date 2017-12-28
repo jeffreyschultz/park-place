@@ -1,5 +1,6 @@
 package com.forrent.parkplace.service.parks;
 
+import com.forrent.parkplace.support.Coord;
 import com.google.maps.model.LatLng;
 
 import java.util.List;
@@ -7,8 +8,8 @@ import java.util.List;
 public interface ParkProvider {
 
     /**
-     * @param latLng
+     * @param coord
      * @return
      */
-    List<Park> findParks(LatLng latLng);
+    List<Park> findParks(Coord coord);
 }

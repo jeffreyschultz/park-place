@@ -1,5 +1,6 @@
 package com.forrent.parkplace.service.parks;
 
+import com.forrent.parkplace.support.Coord;
 import com.google.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class ParkServiceImpl implements ParkService {
         this.parkProviders = parkProviders;
     }
 
-    public List<Park> findParks(LatLng location) {
+    public List<Park> findParks(Coord coord) {
 
         List<Park> allParks = new ArrayList<>();
 
@@ -26,7 +27,8 @@ public class ParkServiceImpl implements ParkService {
             return allParks;
 
         for (ParkProvider parkProvider : parkProviders) {
-            List<Park> parks = parkProvider.findParks(location);
+
+            List<Park> parks = parkProvider.findParks(coord);
 
             if (parks == null || parks.size() == 0)
                 continue;

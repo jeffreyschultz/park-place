@@ -74,7 +74,7 @@
 
 <div class="container-fluid" style="padding: 0px; margin: 0px; height: 100%;">
 
-    <ng-map style="height: 50%;" center="[40.74, -74.18]"></ng-map>
+    <ng-map style="height: 50%;" center="[37.06929, -76.48775]"></ng-map>
 
     <div class="list-group" style="margin: 10px; padding-bottom: 10px; height: 50%; overflow-y: auto;">
         <a href="#"

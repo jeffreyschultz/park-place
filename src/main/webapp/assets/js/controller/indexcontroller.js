@@ -21,7 +21,7 @@
                     function (d) {
                         _this.parks = d;
 
-                        console.log(_this.parks);
+                        // console.log(_this.parks);
                     },
                     function (errResponse) {
                         console.error('Error while fetching parks.');
@@ -40,11 +40,11 @@
                                     lat: position.coords.latitude,
                                     lng: position.coords.longitude
                                 };
+                                map.setCenter(pos);
 
                                 infoWindow.setPosition(pos);
                                 infoWindow.setContent('Location found.');
                                 infoWindow.open(map);
-                                map.setCenter(pos);
 
                                 fetchParks(pos.lat, pos.lng);
 
@@ -72,7 +72,12 @@
 
         var tryAPIGeolocation = function (successCallback, failCallback) {
             jQuery.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyASwFKj6RSnZfHoBxYOsc6tHKtwGhN_xzg", function (success) {
-                successCallback({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+                successCallback({
+                    coords: {
+                        latitude: success.location.lat,
+                        longitude: success.location.lng
+                    }
+                });
             }).fail(function (err) {
                 failCallback(err);
             });

@@ -2,6 +2,7 @@ package com.forrent.parkplace.web.mvc.controller;
 
 import com.forrent.parkplace.service.parks.Park;
 import com.forrent.parkplace.service.parks.ParkService;
+import com.forrent.parkplace.support.Coord;
 import com.forrent.parkplace.web.mvc.model.ParkModel;
 import com.forrent.parkplace.web.mvc.model.ParkToParkModelMapper;
 import com.google.maps.model.LatLng;
@@ -23,7 +24,7 @@ import java.util.List;
  * app itself.
  */
 @RestController
-@RequestMapping("/api/parks")
+@RequestMapping("/parks")
 public class ParksController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParksController.class);
@@ -43,12 +44,14 @@ public class ParksController {
      */
     @RequestMapping
     public List<ParkModel> getParks(
-            @RequestParam(value = "lat", defaultValue = "37.069") Double lat,
-            @RequestParam(value = "lng", defaultValue = "-76.487") Double lng) {
+            //@RequestParam(value = "lat", defaultValue = "37.069")
+                    Double lat,
+            //@RequestParam(value = "lng", defaultValue = "-76.487")
+                    Double lng) {
 
         LOGGER.info("{lat={},lng={}}", lat, lng);
 
-        List<Park> parks = parkService.findParks(new LatLng(lat, lng));
+        List<Park> parks = parkService.findParks(new Coord(lat, lng));
 
         return ParkToParkModelMapper.map(parks);
     }
